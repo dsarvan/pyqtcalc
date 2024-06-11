@@ -1,0 +1,8 @@
+PyQt Calculator
+
+A functional graphical user interface calculator application build with PyQt.
+
+Requirements:
+    PyQt6
+    PyQt6-Qt6
+    PyQt6_sip
