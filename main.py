@@ -9,19 +9,20 @@ from PyQt6 import QtWidgets
 
 
 def main():
-    """PyQt application"""
+    """pyqt application"""
 
+    # create an instance of QApplication
     app = QtWidgets.QApplication(sys.argv)
 
-    win = QtWidgets.QWidget()
+    win = QtWidgets.QWidget()  # application's GUI
     win.setWindowTitle("PyQt Calculator!")
     win.setGeometry(100, 100, 280, 80)
 
-    msg = QtWidgets.QLabel("<h1>PyQt Calculator!</h1>", parent=win)
+    msg = QtWidgets.QLabel("<h4>PyQt Calculator!</h4>", parent=win)
     msg.move(60, 15)
 
-    win.show()
-    sys.exit(app.exec())
+    win.show()  # show application's GUI
+    sys.exit(app.exec())  # application's event loop
 
 
 if __name__ == "__main__":
