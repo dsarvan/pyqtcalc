@@ -7,21 +7,29 @@ import sys
 
 from PyQt6 import QtWidgets
 
+WINDOW_SIZE = 235  # window size in pixels
+
+
+class MainWindow(QtWidgets.QMainWindow):
+    """pyqtcalc main window (GUI or view)"""
+
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("PyQt Calculator")
+        self.setFixedSize(WINDOW_SIZE, WINDOW_SIZE)
+        centralWidget = QtWidgets.QWidget(self)
+        self.setCentralWidget(centralWidget)
+
 
 def main():
-    """pyqt application"""
+    """pyqtcalc main function"""
 
     # create an instance of QApplication
     app = QtWidgets.QApplication(sys.argv)
 
-    win = QtWidgets.QWidget()  # application's GUI
-    win.setWindowTitle("PyQt Calculator!")
-    win.setGeometry(100, 100, 280, 80)
+    window = MainWindow()  # application's GUI
+    window.show()  # show application's GUI
 
-    msg = QtWidgets.QLabel("<h4>PyQt Calculator!</h4>", parent=win)
-    msg.move(60, 15)
-
-    win.show()  # show application's GUI
     sys.exit(app.exec())  # application's event loop
 
 
