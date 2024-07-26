@@ -17,7 +17,10 @@ class MainWindow(QtWidgets.QMainWindow):
         super().__init__()
         self.setWindowTitle("PyQt Calculator")
         self.setFixedSize(WINDOW_SIZE, WINDOW_SIZE)
+
+        self.generalLayout = QtWidgets.QVBoxLayout()
         centralWidget = QtWidgets.QWidget(self)
+        centralWidget.setLayout(self.generalLayout)
         self.setCentralWidget(centralWidget)
 
 
