@@ -5,9 +5,13 @@
 
 import sys
 
+
+from PyQt6.QtCore import Qt
 from PyQt6 import QtWidgets
 
 WINDOW_SIZE = 235  # window size in pixels
+
+DISPLAY_HEIGHT = 45  # display height in pixels
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -22,6 +26,16 @@ class MainWindow(QtWidgets.QMainWindow):
         centralWidget = QtWidgets.QWidget(self)
         centralWidget.setLayout(self.generalLayout)
         self.setCentralWidget(centralWidget)
+
+        self._createDisplay()
+
+    def _createDisplay(self):
+        """create application's display"""
+        self.display = QtWidgets.QLineEdit()
+        self.display.setFixedHeight(DISPLAY_HEIGHT)
+        self.display.setAlignment(Qt.AlignmentFlag.AlignRight)
+        self.display.setReadOnly(True)
+        self.generalLayout.addWidget(self.display)
 
 
 def main():
