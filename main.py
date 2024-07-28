@@ -5,13 +5,12 @@
 
 import sys
 
-
-from PyQt6.QtCore import Qt
 from PyQt6 import QtWidgets
+from PyQt6.QtCore import Qt
 
 WINDOW_SIZE = 235  # window size in pixels
-
 DISPLAY_HEIGHT = 45  # display height in pixels
+BUTTON_SIZE = 40  # button size in pixels
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -28,6 +27,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setCentralWidget(centralWidget)
 
         self._createDisplay()
+        self._createButtons()
 
     def _createDisplay(self):
         """create application's display"""
@@ -36,6 +36,25 @@ class MainWindow(QtWidgets.QMainWindow):
         self.display.setAlignment(Qt.AlignmentFlag.AlignRight)
         self.display.setReadOnly(True)
         self.generalLayout.addWidget(self.display)
+
+    def _createButtons(self):
+        """create application's keyboard buttons"""
+        self.buttonMap = {}
+        buttonLayout = QtWidgets.QGridLayout()
+        keyboard = [
+            ["7", "8", "9", "/", "C"],
+            ["4", "5", "6", "*", "("],
+            ["1", "2", "3", "-", ")"],
+            ["0", ".", "%", "+", "="],
+        ]
+
+        for row, keys in enumerate(keyboard):
+            for col, key in enumerate(keys):
+                self.buttonMap[key] = QtWidgets.QPushButton(key)
+                self.buttonMap[key].setFixedSize(BUTTON_SIZE, BUTTON_SIZE)
+                buttonLayout.addWidget(self.buttonMap[key], row, col)
+
+        self.generalLayout.addLayout(buttonLayout)
 
 
 def main():
