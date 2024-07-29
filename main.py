@@ -56,6 +56,11 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.generalLayout.addLayout(buttonLayout)
 
+    def setDisplayText(self, text):
+        """sets and updates display's text"""
+        self.display.setText(text)
+        self.display.setFocus()
+
 
 def main():
     """pyqtcalc main function"""
