@@ -61,6 +61,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.display.setText(text)
         self.display.setFocus()
 
+    def displayText(self):
+        """gets current display's text"""
+        return self.display.text()
+
 
 def main():
     """pyqtcalc main function"""
