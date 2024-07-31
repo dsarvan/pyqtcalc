@@ -65,6 +65,10 @@ class MainWindow(QtWidgets.QMainWindow):
         """gets current display's text"""
         return self.display.text()
 
+    def clearDisplay(self):
+        """clears display's text"""
+        self.setDisplayText("")
+
 
 def main():
     """pyqtcalc main function"""
