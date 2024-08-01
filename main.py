@@ -11,6 +11,7 @@ from PyQt6.QtCore import Qt
 WINDOW_SIZE = 235  # window size in pixels
 DISPLAY_HEIGHT = 45  # display height in pixels
 BUTTON_SIZE = 40  # button size in pixels
+ERROR_MSG = "ERROR"  # error message
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -68,6 +69,16 @@ class MainWindow(QtWidgets.QMainWindow):
     def clearDisplay(self):
         """clears display's text"""
         self.setDisplayText("")
+
+
+def evaluateExpression(expression):
+    """evaluate math expressions (model)"""
+    try:
+        result = str(eval(expression, {}, {}))
+    except Exception:
+        result = ERROR_MSG
+
+    return result
 
 
 def main():
