@@ -4,6 +4,7 @@
 
 
 import sys
+from functools import partial
 
 from PyQt6 import QtWidgets
 from PyQt6.QtCore import Qt
@@ -12,6 +13,38 @@ WINDOW_SIZE = 235  # window size in pixels
 DISPLAY_HEIGHT = 45  # display height in pixels
 BUTTON_SIZE = 40  # button size in pixels
 ERROR_MSG = "ERROR"  # error message
+
+
+class PyQtCalc:
+    """pyqtcalc controller class"""
+
+    def __init__(self, model, view):
+        self._model = model
+        self._view = view
+        self._connectSignalAndSlot()
+
+    def _calculateResult(self):
+        """calculate and update display result"""
+        result = self._model(expression=self._view.displayText())
+        self._view.setDisplayText(result)
+
+    def _buildExpression(self, subExpression):
+        """build math expression and display result"""
+        if self._view.displayText() == ERROR_MSG:
+            self._view.clearDisplay()
+
+        expression = self._view.displayText() + subExpression
+        self._view.setDisplayText(expression)
+
+    def _connectSignalAndSlot(self):
+        """connect button signals with slots method"""
+        for keySymbol, button in self._view.buttonMap.items():
+            if keySymbol not in {"=", "C"}:
+                button.clicked.connect(partial(self._buildExpression, keySymbol))
+
+        self._view.buttonMap["="].clicked.connect(self._calculateResult)
+        self._view.display.returnPressed.connect(self._calculateResult)
+        self._view.buttonMap["C"].clicked.connect(self._view.clearDisplay)
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -89,6 +122,8 @@ def main():
 
     window = MainWindow()  # application's GUI
     window.show()  # show application's GUI
+
+    PyQtCalc(model=evaluateExpression, view=window)
 
     sys.exit(app.exec())  # application's event loop
 
