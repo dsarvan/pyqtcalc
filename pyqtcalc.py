@@ -6,6 +6,7 @@
 import sys
 from functools import partial
 
+import qdarktheme
 from PyQt6 import QtWidgets
 from PyQt6.QtCore import Qt
 
@@ -120,6 +121,7 @@ def main():
     # create an instance of QApplication
     app = QtWidgets.QApplication(sys.argv)
     app.setStyle("Fusion")  # set Fusion system style
+    qdarktheme.setup_theme()  # apply dark theme to application
 
     window = MainWindow()  # application's GUI
     window.show()  # show application's GUI
